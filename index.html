@@ -48,6 +48,44 @@ button:hover {
 #final[hidden] {
   display: none;
 }
+
+    
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#final:not([hidden]) {
+  animation: fadeIn 1.5s ease-out;
+}
+
+    
+#clear {
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+#clear img {
+  display: block;
+  width: 100%;
+  margin: 0 auto 20px;
+}
+
+#clear:not([hidden]) {
+  animation: fadeIn 1.5s ease-out;
+}
+
+[hidden] {
+  display: none !important;
+}
+
   </style>
 </head>
 <body>
@@ -86,6 +124,14 @@ button:hover {
     <button onclick="checkAnswer(4)">回答する</button>
     <p id="result4"></p>
   </div>
+
+  <div id="clear" hidden>
+    <img src="">
+    <p>これ解けるんですね、驚きました。</p>
+    <p>それにしても変なバグでしたね、、、あなたもお気を付けください。</p>
+    <button onclick="shareX()">Xで自慢しよう！</button>
+  </div>
+    
   <script>
     const correctAnswers = ["くかん","かいろ","ういんく","くろう"];
 
@@ -97,6 +143,12 @@ button:hover {
 
       if(answer === correctAnswers[number - 1]) {
         result.textContent = "正解！";
+
+      if (number === 4) {
+        document.getElementById("final").hidden = true;
+        document.getElementById("clear").hidden = false;
+        return;
+      }
 
       if (number <= 3) {
         cleared[number -1] = true;
@@ -110,5 +162,18 @@ button:hover {
       result.textContent = "不正解。";
     }
     }
+
+    
+function shareX() {
+  const text = "『△』から答えを導き出した\n#謎解き #サンカク";
+  const url = "https://nosuke314.github.io/sankaku/index.html";
+
+  const shareURL =
+    "https://twitter.com/intent/tweet?text=" +
+    encodeURIComponent(text) +
+    "&url=" + encodeURIComponent(url);
+
+  window.open(shareURL, "_blank");
+}
  </script>
 </body>
