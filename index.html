@@ -2,6 +2,23 @@
 <head>
   <meta charset="UTF-8">
   <title>△</title>
+  <style>
+    p {
+      text-align: center;
+    }
+      
+    .question-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .question {
+      flex: 1;
+    }
+
+    .question img {
+      width: 100%;
+    }
 </head>
 <body>
   <img src="">
@@ -10,26 +27,57 @@
   <p>、、、なっていただきたかったのですが、変なバグが起きてしまいました。</p>
   <p>どうやら「三角以外のすべての要素が消されてしまった」ようです、、、</p>
   <p>まあなんとかなりますよね！頑張ってください！</p>
-  <p>答えはすべてさんかくを読めば出てきますよ</p>
+  <p>答えはすべてサンカクを読めば出てきますよ。</p>
 
-  <div>
+  <div　class="question">
     <img src="">
-    <input type="text" id="answer1" placeholder="ひらがな推奨">
+    <input type="text" id="answer1" placeholder="ひらがなで回答">
     <button onclick="checkAnswer(1)">回答する</button>
     <p id="result1"></p>
   </div>
 
-  <div>
+  <div class="question">
     <img src="">
-    <input type="text" id="answer2" placeholder="ひらがな推奨">
+    <input type="text" id="answer2" placeholder="ひらがなで回答">
     <button onclick="checkAnswer(2)">回答する</button>
     <p id="result2"></p>
   </div>
 
-  <div>
+  <div class="question">
     <img src="">
-    <input type="text" id="answer3" placeholder="ひらがな推奨">
+    <input type="text" id="answer3" placeholder="ひらがなで回答">
     <button onclick="checkAnswer(3)">回答する</button>
     <p id="result3"></p>
   </div>
+
+  <div id="final" hidden>
+    <img src="">
+    <input type="text" id="answer4" placeholder="ひらがなで回答">
+    <button onclick="checkAnswer(4)">回答する</button>
+    <p id="result4"></p>
+  </div>
+  <script>
+    const correctAnswers = ["くかん","かいろ","ういんく","くろう"];
+
+    const cleared = [false, false, false];
+
+    function checkAnswer(number) {
+      const answer = document.getElementById("answer" + number).value;
+      const result  = document.getElementById("result" + number);
+
+      if(answer === correctAnswers[number - 1]) {
+        result.textContent = "正解！";
+
+      if (number <= 3) {
+        cleared[number -1] = true;
+      }
+
+      if(cleared.every(value => value === true)) {
+        document.getElementById("final").hidden = false;
+      }
+
+    } else {
+      result.textContent = "不正解。";
+    }
+    }
 </body>
