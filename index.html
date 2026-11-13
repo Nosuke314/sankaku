@@ -12,6 +12,11 @@
   padding: 30px 20px;
     }
 
+  .start {
+    width: 100%;
+    mergin: 0 auto 20px;
+}
+    
     .question, #final {
   max-width: 600px;
   margin: 50px auto;
@@ -89,7 +94,10 @@ button:hover {
   </style>
 </head>
 <body>
+  <div class="start">
   <img src="△ - 2.png">
+  </div>
+  
   <p>この度は「△」をプレイしていただき誠にありがとうございます。</p>
   <p>細部までこだわった究極のデザインをご覧に！</p>
   <p>、、、なっていただきたかったのですが、変なバグが起きてしまいました。</p>
@@ -119,7 +127,7 @@ button:hover {
   </div>
 
   <div id="final" hidden>
-    <img src="△ - 6.png">
+    <img src="Untitled design.png">
     <input type="text" id="answer4" placeholder="ひらがなで回答">
     <button onclick="checkAnswer(4)">回答する</button>
     <p id="result4"></p>
